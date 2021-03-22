@@ -1,6 +1,7 @@
 const{ BrowserWindow, Notification } = require('electron')
 const{ getConnection } = require('./database')
 
+//------------------------------------Base de datos----------------------------------//
 async function createProduct(producto){
     try {
         const conn = await getConnection()
@@ -53,7 +54,12 @@ async function updateProduct(id, product){
     const result = await conn.query('UPDATE product SET ? WHERE id = ?', [product, id])
     return(result)
 }
+//------------------------------------Base de datos----------------------------------//
 
+
+
+
+//------------------------------------Crear ventana---------------------------------//
 let window
 
 function createWindow(){
@@ -71,7 +77,10 @@ function createWindow(){
     //Ejemplo para cargar alguna pagina de internet
     //window.loadURL("https://www.youtube.com/watch?v=0h2LBY5M8y4")
 }
+//------------------------------------Crear ventana---------------------------------//
 
+
+//Exportar funciones
 module.exports = {
     createWindow,
     createProduct,

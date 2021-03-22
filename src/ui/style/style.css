@@ -1,4 +1,9 @@
-#productsList{
+/* #productsList{
     height: 100vh;
+    overflow-y: auto;
+} */
+
+#total{
+    width: 100vh;
     overflow-y: auto;
 }

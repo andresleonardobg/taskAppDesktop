@@ -25,11 +25,11 @@ async function editProducts(id){
    editProductId = id
 }
 
-//Toma los datos del formulario y los guarda en la base de datos
+// Toma los datos del formulario y los guarda en la base de datos
 productForm.addEventListener('submit', async (e) => {
 
     try {
-        e.preventDefault()
+        // e.preventDefault()
 
         const newProduct = {
             name: productName.value,
@@ -72,22 +72,49 @@ async function deleteProducts(id){
     
 }
 
+var bill = 0
+var total = document.getElementById("totalSum")
+
+function cancel(){
+    bill = 0
+    total.innerHTML = bill
+}
+
+function sum(item){
+    bill += item
+    total.innerHTML = bill
+    count.innerHTML =1
+}
+
+function res(item){
+    if (bill != 0){
+        bill -= item
+        total.innerHTML = bill
+    }
+    
+}
 
 //Crea los datos de la db en el index.html
 function renderProducts(product){
     productsList.innerHTML = ''
     products.forEach(product => {
         productsList.innerHTML += /*html*/`
-            <div class="card card-body my-2 animate__animated animate__fadeInUp">
+            <div class="card card-body my-2 animate__animated animate__fadeInUp m-2" style="width: 18rem;">
                 <h4>${product.name}</h4>
                 <p>${product.description}</p>
-                <h3>${product.price}</h3>
+                <h3>Precio ${product.price}</h3>
                 <div>
                     <button class="btn btn-secondary" onclick="deleteProducts(${product.id})">
                         DELETE
                     </button>
                     <button class="btn btn-secondary" onclick="editProducts(${product.id})">
                         EDIT
+                    </button>
+                    <button class="btn btn-secondary" onclick="sum(${product.price})">
+                        +
+                    </button>
+                    <button class="btn btn-secondary" onclick="res(${product.price})">
+                        -
                     </button>
                 </div>
             </div>
